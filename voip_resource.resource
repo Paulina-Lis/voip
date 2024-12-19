@@ -15,4 +15,7 @@ Make A Call With Number
     ${call}                 Make Call           ${target_number}    ${timeout}
     Log                     ${call}
     
-    
+Record Sample
+    ${record_sample}        Record Audio    
+    Should Be True          ${record_sample}
+

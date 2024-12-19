@@ -4,6 +4,9 @@ from robot.api import logger
 import audioop
 import time
 import wave
+import os
+from pesq import pesq
+from scipy.io import wavfile
 
 class VoIP:
     """
@@ -76,6 +79,10 @@ class VoIP:
             logger.info(f"Error while recording audio: {e}", also_console=True)
             self.vp.stop()
             return False
+
+    def check_sample_quality(self):
+        pass
+        # rate, ref = wavfile.read()
 
 
 # voip = VoIP()
