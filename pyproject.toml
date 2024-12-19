@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "voip-vm"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+pyvoip = "^1.6.8"
+audioop-lts ="0.2.1"
+wave = "^0.0.2"
+robotframework = "^7.1.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
