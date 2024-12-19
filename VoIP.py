@@ -80,9 +80,19 @@ class VoIP:
             self.vp.stop()
             return False
 
-    def check_sample_quality(self):
-        pass
-        # rate, ref = wavfile.read()
+    @staticmethod
+    def check_sample_quality():
+        output_path = os.path.join(os.getcwd(), "test_wave.wav")
+        logger.info(f"{output_path}", also_console=True)
+        try:
+            rate, ref = wavfile.read(output_path)
+            rate, deg = wavfile.read(output_path)
+            p = pesq(rate, ref, deg, "nb")
+            logger.info(f"Pesq: {p}")
+            return p
+        except IOError:
+            logger.info(f"Io Error", also_console=True)
+
 
 
 # voip = VoIP()
