@@ -16,9 +16,18 @@ Make A Call With Number
     Log                     ${call}
     
 Record Sample
-    ${record_sample}        Record Audio    
+    [Arguments]             ${filename}
+    ${record_sample}        Record Audio        ${filename}
     Should Be True          ${record_sample}
 
-Check Quality First Sample
-    ${test}                 Check Sample Quality
-    Log                     ${test}
+Check Quality
+    [Arguments]             ${filename}
+    ${first_sample}         Check Sample Quality    first_audio_sample.wav
+    Log                     ${first_sample}
+    Set Suite Variable      ${first_sample}
+
+Audio Sample Quality Above
+    [Arguments]             ${pesq_value}
+    Audio Sample Quality    ${pesq_value}
+#Compare Audio Samples
+    
