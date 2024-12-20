@@ -60,9 +60,9 @@ class VoIP:
             self.vp.stop()
             return False
 
-    def record_audio(self, filename='call_recording.wav') -> bool:
+    def record_audio(self, filename: str) -> bool:
         try:
-            w = wave.open('test_wave.wav', 'wb')
+            w = wave.open(filename, 'wb')
             w.setnchannels(1)
             w.setsampwidth(8 // 8)
             w.setframerate(8000)
@@ -81,17 +81,17 @@ class VoIP:
             return False
 
     @staticmethod
-    def check_sample_quality():
-        output_path = os.path.join(os.getcwd(), "test_wave.wav")
+    def check_sample_quality(filename: str) -> None:
+        output_path = os.path.join(os.getcwd(), filename)
         logger.info(f"{output_path}", also_console=True)
         try:
             rate, ref = wavfile.read(output_path)
             rate, deg = wavfile.read(output_path)
-            p = pesq(rate, ref, deg, "nb")
-            logger.info(f"Pesq: {p}")
-            return p
+            pesq_value = pesq(rate, ref, deg, "nb")
+            logger.info(f"Pesq: {pesq_value}", also_console=True)
+            return pesq_value
         except IOError:
-            logger.info(f"Io Error", also_console=True)
+            logger.info(f"IOError", also_console=True)
 
 
 
