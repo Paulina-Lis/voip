@@ -1,3 +1,5 @@
+from hmac import compare_digest
+
 from pyVoIP.VoIP import VoIPPhone, CallState, InvalidStateError, PhoneStatus
 from time import sleep, time
 from robot.api import logger
@@ -93,6 +95,14 @@ class VoIP:
         except IOError:
             logger.info(f"IOError", also_console=True)
 
+    @staticmethod
+    def audio_sample_quality(value, sample_value):
+        logger.info(f"Minimum: {value}  recorded sample value: {sample_value}")
+        if sample_value > float(value): return True
+
+    @staticmethod
+    def compare(first, second):
+        logger.info(f"Compare first recorded audio {first} with second recorded sample {second}")
 
 
 # voip = VoIP()
